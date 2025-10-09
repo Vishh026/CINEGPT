@@ -1,6 +1,9 @@
 # setup
  - create react app
  - configure tailwind css
+ - routing
+ - login form 
+ - form validation
 
 # features
   - login/signup 
