@@ -7,17 +7,15 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { adduser } from "../utils/store/reducers/UserSlice";
 import { useDispatch } from "react-redux";
+import { User_Avatar } from "../utils/Constants";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [isSignForm, setIsSignForm] = useState(true);
   const [isErrorMsg, setErrorMsg] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const email = useRef(null);
   const password = useRef(null);
@@ -30,8 +28,8 @@ const Login = () => {
     const message = CheckValidData(
       email.current.value,
       password.current.value,
-      name.current?.value,
-      isSignForm
+      // name.current?.value,
+      // isSignForm
     );
     if (message) {
       setErrorMsg(message);
@@ -50,27 +48,27 @@ const Login = () => {
         );
 
         // Profile data to set
-        const profileData = {
+        await updateProfile(userCredential.user,{
           displayName: name.current.value,
-          photoURL: "https://avatars.githubusercontent.com/u/180160623?v=4",
-        };
+          photoURL: User_Avatar ,
+        })
+        ;
 
         // Update profile
-        await updateProfile(userCredential.user, profileData);
+        const updatedUser = auth.currentUser;
 
         // Dispatch using the profileData you just set
-        dispatch(adduser({
-          uid: userCredential.user.uid,
-          email: userCredential.user.email,
-          displayName: profileData.displayName,
-          photoURL: profileData.photoURL
-        }));
-
-        navigate("/");
-        console.log("User signed up:", { ...userCredential.user, ...profileData });
+        dispatch(
+          adduser({
+            uid: updatedUser.uid,
+            email: updatedUser.email,
+            displayName: updatedUser.displayName,
+            photoURL: updatedUser.photoURL,
+          })
+        );
       } else {
         // SIGN IN
-        const userCredential = await signInWithEmailAndPassword(
+        await signInWithEmailAndPassword(
           auth,
           email.current.value,
           password.current.value
@@ -78,18 +76,16 @@ const Login = () => {
 
         const loggedInUser = auth.currentUser;
 
-        dispatch(adduser({
-          uid: loggedInUser.uid,
-          email: loggedInUser.email,
-          displayName: loggedInUser.displayName,
-          photoURL: loggedInUser.photoURL
-        }));
-
-        navigate("/browse");
-        console.log("User signed in:", loggedInUser);
+        dispatch(
+          adduser({
+            uid: loggedInUser.uid,
+            email: loggedInUser.email,
+            displayName: loggedInUser.displayName,
+            photoURL: loggedInUser.photoURL,
+          })
+        );
       }
     } catch (error) {
-      console.error("Firebase error:", error);
       setErrorMsg(error.code + " : " + error.message);
     }
 
