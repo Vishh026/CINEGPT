@@ -98,7 +98,7 @@ const Login = () => {
   };
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full ">
       <Header />
       <img
         className="w-full h-full object-cover opacity-40"

@@ -1,6 +1,6 @@
 export const netFlix_logo = "./Netflix_Logo_PMS.png"
 export const User_Avatar = "./image.png"
-
+export const Image_path = "https://image.tmdb.org/t/p/w300"
 
 
 export const TMDB_HEADERS= {

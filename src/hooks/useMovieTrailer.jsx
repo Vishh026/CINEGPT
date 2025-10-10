@@ -22,11 +22,16 @@ const useMovieTrailer = (movieId) => {
       : json.results[0];
 
     dispatch(addTrailerVideo(trailer));
+
+    
   };
 
   useEffect(() => {
     if(movieId) getVideoBackground();
   },[movieId]);
 };
+
+
+
 
 export default useMovieTrailer;

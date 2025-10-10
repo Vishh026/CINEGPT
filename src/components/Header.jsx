@@ -39,7 +39,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="w-full absolute top-0 left-0 px-8 py-4 bg-gradient-to-b from-black z-10 flex justify-between items-center text-yellow-600">
+    <header className="w-full absolute top-0 left-0 px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between items-center text-yellow-600">
       {/* Logo */}
       <img className="w-44" src={netFlix_logo} alt="Netflix Logo" />
 
