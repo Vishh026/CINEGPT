@@ -11,7 +11,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  console.log("store user", user);
+  
   const handleClick = () => {
     signOut(auth)
       .then(() => {
@@ -39,7 +39,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="w-full absolute top-0 left-0 px-8 py-4 bg-gradient-to-b from-black z-10 flex justify-between items-center">
+    <header className="w-full absolute top-0 left-0 px-8 py-4 bg-gradient-to-b from-black z-10 flex justify-between items-center text-yellow-600">
       {/* Logo */}
       <img className="w-44" src={netFlix_logo} alt="Netflix Logo" />
 
