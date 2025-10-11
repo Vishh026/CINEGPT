@@ -9,7 +9,7 @@ import {
 import { auth } from "../utils/firebase";
 import { adduser } from "../utils/store/reducers/UserSlice";
 import { useDispatch } from "react-redux";
-import { User_Avatar } from "../utils/Constants";
+import { Main_Container, User_Avatar } from "../utils/Constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -102,7 +102,7 @@ const Login = () => {
       <Header />
       <img
         className="w-full h-full object-cover opacity-40"
-        src="/Main.png"
+        src={Main_Container}
         alt="background"
       />
       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
